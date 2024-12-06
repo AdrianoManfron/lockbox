@@ -1,0 +1,16 @@
+{
+  "name": "lockbox",
+  "version": "1.0.0",
+  "description": "Um Software para Guardar Notas Criptografadas (Curso PHP Rocketseat - Módulo Avançado)",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx tailwindcss -i ./styles/input.css -o ./public/styles/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "daisyui": "^4.12.14",
+    "tailwindcss": "^3.4.16"
+  }
+}
