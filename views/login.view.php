@@ -17,11 +17,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="card-title">Faça o seu login</div>
-                        <?php if ($mensage = flash()->get('mensage')) : ?>
-                            <div class="border-green-600 bg-green-700 text-green-400 px-4 py-1 mt-5 rounded-md text-sm font-bold">
-                                <?= $mensage ?>
-                            </div>
-                        <?php endif; ?>
+                        <?php require base_path('views/partials/_mensage.view.php'); ?>
                         <label class="form-control">
                             <div class="label">
                                 <span class="label-text text-black">Email</span>
