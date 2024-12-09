@@ -1,46 +1,50 @@
 <?php $validacoes = flash()->get('validacoes'); ?>
 
 <div class="bg-base-300 rounded-l-box w-56 flex flex-col divide-y divide-base-100">
-    <?php foreach ($notas as $key => $nota): ?>
+    <?php foreach ($notas as $key => $nota) { ?>
         <a href="/notas?id=<?= $nota->id ?><?= request()->get('pesquisar', '', '&pesquisar=') ?>"
             class="
             w-full p-2 cursor-pointer hover:bg-base-200
-            <?php if ($key == 0): ?> rounded-tl-box <?php endif; ?>
-            <?php if ($nota->id == $notaSelecionada->id): ?> bg-base-200 <?php endif; ?>
+            <?php if ($key == 0) { ?> rounded-tl-box <?php } ?>
+            <?php if ($nota->id == $notaSelecionada->id) { ?> bg-base-200 <?php } ?>
             ">
             <?= $nota->titulo ?> <br />
-            <span class="text-xs"><?= $nota->id ?></span>
+            <span class="text-xs">id: <?= $nota->id ?> || criado: <?= $nota->dataCriacao()->locale('pt_BR')->diffForHumans()?></span>
         </a>
-    <?php endforeach; ?>
+    <?php } ?>
 </div>
 <div class="bg-base-200 rounded-r-box w-full p-10 flex flex-col space-y-6">
     <form action="/nota" method="post" id="form-atualizacao">
         <input type="hidden" name="__method" value="PUT" />
-        <input type="hidden" name="id" value="<?=$notaSelecionada->id?>" />
+        <input type="hidden" name="id" value="<?= $notaSelecionada->id?>" />
         <label class="form-control w-full">
             <div class="label">
                 <span class="label-text">Título</span>
             </div>
             <input type="text" name="titulo" value="<?= $notaSelecionada->titulo ?>" class="input input-bordered" />
-            <?php if (isset($validacoes['titulo'])) : ?>
+            <?php if (isset($validacoes['titulo'])) { ?>
                 <div class="label text-xs text-error"><?= $validacoes['titulo'][0] ?></div>
-            <?php endif; ?>
+            <?php } ?>
         </label>
 
         <label class="form-control">
             <div class="label">
                 <span class="label-text">Sua nota</span>
             </div>
-            <textarea name="nota" class="textarea textarea-bordered h-24"><?= $notaSelecionada->nota ?></textarea>
-            <?php if (isset($validacoes['nota'])) : ?>
+            <textarea
+                <?php if (! session()->get('mostrar')) { ?>
+                    disabled
+                <?php } ?>
+            name="nota" class="textarea textarea-bordered h-24"><?= $notaSelecionada->nota() ?></textarea>
+            <?php if (isset($validacoes['nota'])) { ?>
                 <div class="label text-xs text-error"><?= $validacoes['nota'][0] ?></div>
-            <?php endif; ?>
+            <?php } ?>
         </label>
     </form>
     <div class="flex justify-between items-center">
         <form action="/nota" method="post">
             <input type="hidden" name="__method" value="DELETE" />
-            <input type="hidden" name="id" value="<?=$notaSelecionada->id?>" />
+            <input type="hidden" name="id" value="<?= $notaSelecionada->id?>" />
             <button type="submit" class="btn btn-error">Deletar</button>
         </form>
         <button class="btn btn-primary" type="submit" form="form-atualizacao">Atualizar</button>

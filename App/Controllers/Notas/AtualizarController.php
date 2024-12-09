@@ -5,18 +5,19 @@ namespace App\Controllers\Notas;
 use App\Models\Nota;
 use Core\Validacao;
 
-class AtualizarController{
+class AtualizarController
+{
     public function __invoke()
     {
 
-        $validacao = Validacao::validar([
-            'id' => ['required'],
-            'titulo' => ['required', 'min:5', 'max:255'],
-            'nota' => ['required'],
-        ], request()->all());
+        $validacao = Validacao::validar(
+            array_merge([
+                'id' => ['required'],
+                'titulo' => ['required', 'min:5', 'max:255'],
+            ], session()->get('mostrar') ? ['nota' => ['required']] : []), request()->all());
 
         if ($validacao->naoPassou()) {
-            return redirect('/notas?id=' . request()->post('id'));
+            return redirect('/notas?id='.request()->post('id'));
         }
 
         Nota::update(

@@ -27,18 +27,18 @@
                                 name="email"
                                 value="<?= old('email') ?>"
                                 class="input input-bordered w-full max-w-xs bg-white" />
-                            <?php if (isset($validacoes['email'])) : ?>
+                            <?php if (isset($validacoes['email'])) { ?>
                                 <div class="label text-xs text-error"><?= $validacoes['email'][0] ?></div>
-                            <?php endif; ?>
+                            <?php } ?>
                         </label>
                         <label class="form-control">
                             <div class="label">
                                 <span class="label-text text-black">Senha</span>
                             </div>
                             <input type="password" name="senha" class="input input-bordered w-full max-w-xs bg-white" />
-                            <?php if (isset($validacoes['senha'])) : ?>
+                            <?php if (isset($validacoes['senha'])) { ?>
                                 <div class="label text-xs text-error"><?= $validacoes['senha'][0] ?></div>
-                            <?php endif; ?>
+                            <?php } ?>
                         </label>
                         <div class="card-actions">
                             <button class="btn btn-primary btn-block">Login</button>

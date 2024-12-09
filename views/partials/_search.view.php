@@ -5,7 +5,7 @@
                 type="text"
                 class="grow"
                 name="pesquisar"
-                value="<?=request()->get('pesquisar', ''); ?>"
+                value="<?= request()->get('pesquisar', ''); ?>"
                 placeholder="Pesquisar notas..." />
             <button class="btn btn-ghost btn-circle">
                 <svg

@@ -2,13 +2,16 @@
 
 namespace Core;
 
-class Flash {
-    public function push($chave, $valor){
+class Flash
+{
+    public function push($chave, $valor)
+    {
         $_SESSION["flash_$chave"] = $valor;
     }
 
-    public function get($chave){
-        if(! isset($_SESSION["flash_$chave"])){
+    public function get($chave)
+    {
+        if (! isset($_SESSION["flash_$chave"])) {
             return false;
         }
 
